@@ -1,0 +1,96 @@
+namespace final_task
+{
+    internal class ATM_Machine
+    {
+        /*
+        Create a Bank System for ATM enables clients to Deposit, Withdraw and Check their balance 
+        considering all validations may occur on user inputs such as (valid value, greater than zero and 
+        less than balance, etc.…) . 
+        Note: Make sure the menu will appear on screen till the client enters exit or similar.   
+        */
+         static void Main(string[] args)
+        {
+            ATM_Machine machine = new ATM_Machine();    
+            machine.start();
+        }
+        public void start()
+        {
+            Console.WriteLine("welcome to out ATM machine. ");
+            Console.WriteLine("Enter the cardNumber Please: ");
+            int cardnumber = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the password plesase: ");
+            int password = Convert.ToInt32(Console.ReadLine());
+            if (password != 123123 && cardnumber != 952002)
+            {
+                Console.WriteLine("wrong information, take the card. \n");
+            }
+            while (password == 123123 && cardnumber == 952002)
+            {
+                Console.WriteLine("please choose the number of the service from the ATM Menu:\n1. Withdraw.  \n2. Deposit.   \n3. Check Balance.   \n4. Exit\n");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
+                switch (choice)
+                {
+                    case 1:
+                        Withdraw();
+                        break;
+                    case 2:
+                        Deposit();
+                        break;
+                    case 3:
+                        checkBalance();
+                        break;
+                    case 4:
+                        Console.WriteLine("Thanks for using out ATM machine. \n");
+                        Exit();
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
+
+        public double balance = 1000;
+        public static void Exit()
+        {
+            Environment.Exit(0);
+        }
+        public void Deposit()
+        {
+            Console.WriteLine("Enter the amount to desposite: \n");
+            double amount = Convert.ToDouble(Console.ReadLine());
+            if (amount > 0)
+            {
+                balance += amount;
+                Console.WriteLine("Deposite dont seccessfully.\n");
+            }
+            else
+            {
+                Console.WriteLine("invalid input!! please try again.\n");
+            }
+        }
+
+        public void Withdraw()
+        {
+            Console.WriteLine("Enter the amount to Withdraw: \n");
+            double amount = Convert.ToDouble(Console.ReadLine());
+            if (amount > 0 && balance >= amount)
+            {
+                balance -= amount;
+                Console.WriteLine("Withdraw dont seccessfully. \n");
+            }
+            else
+            {
+                Console.WriteLine("invalid input!! please try again.\n");
+            }
+        }
+
+        public void checkBalance()
+        {
+            Console.WriteLine($"Your balance is {balance}JD. \n" );
+        }
+}
+
+}
+
