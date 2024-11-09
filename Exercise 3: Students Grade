@@ -1,0 +1,55 @@
+namespace final_task
+{
+    internal class Grades
+    {
+        /*
+        Create a program for taking the number of students dynamically at a class with their grades 
+        from the teacher and then show the minimum mark, maximum mark and the average one. Plus, 
+        how many students are above the Average and how much below Average.
+        */
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the students number: ");
+            int stnumber = Convert.ToInt32(Console.ReadLine());
+            int[] stgrades = new int[stnumber];
+            for (int i = 0; i < stnumber; i++)
+            {
+                Console.WriteLine("Enter the name of student: " + (i+1));
+                string name = Console.ReadLine();
+                Console.WriteLine("Enter the grade for the student " + name + " : ");
+                int grade = Convert.ToInt32(Console.ReadLine());
+                stgrades[i] = grade;
+                
+            }
+            int minGrade = stgrades[0];
+            int maxGrade = stgrades[0];
+            int total = 0;
+
+            foreach (int grade in stgrades)
+            {
+                if (grade < minGrade) minGrade = grade;
+                if (grade > maxGrade) maxGrade = grade;
+                total += grade;
+            }
+
+            double average = total / (double)stnumber;
+
+            int aboveAverage = 0, belowAverage = 0;
+
+            foreach (int grade in stgrades)
+            {
+                if (grade > average) aboveAverage++;
+                if (grade < average) belowAverage++;
+            }
+
+            Console.WriteLine($"\nMinimum Grade: {minGrade}");
+            Console.WriteLine($"Maximum Grade: {maxGrade}");
+            Console.WriteLine($"Average Grade: {average:F2}");
+            Console.WriteLine($"Number of students above average: {aboveAverage}");
+            Console.WriteLine($"Number of students below average: {belowAverage}");
+        }
+    }
+}
+
+
+
